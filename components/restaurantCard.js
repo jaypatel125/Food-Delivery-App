@@ -11,7 +11,7 @@ export default function RestaurantCard({ restaurant }) {
       onPress={() => navigation.navigate("Restaurant", { ...restaurant })}
     >
       <View
-        style={{ shadowColor: themeColors.bgColor(0.2), shadowRadius: 7 }}
+        style={{ shadowColor: "rgba(24, 24, 24, 0.2)", shadowRadius: 7 }}
         className="mr-6 bg-white rounded-3xl shadow-lg"
       >
         <Image className="h-36 w-64 rounded-t-3xl" source={restaurant.image} />
@@ -25,7 +25,6 @@ export default function RestaurantCard({ restaurant }) {
             <Text className="text-gray-700">{restaurant.rating}</Text>
             <Text className="text-gray-700">
               ({restaurant.reviews} reviews)
-              <Text className="font-semibold"> {restaurant.categories}</Text>
             </Text>
           </View>
           <View className="flex-row items-center space-x-1">

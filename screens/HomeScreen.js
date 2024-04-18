@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../themes";
 import Categories from "../components/Categories";
-import { featured } from "../constants";
+import { pizzaShops, burgerShops, otherShops } from "../constants";
 import FeaturedRow from "../components/featuredRow";
 export default function HomeScreen() {
   return (
@@ -41,7 +41,37 @@ export default function HomeScreen() {
         <View className="mt-5">
           {
             // Featured Restaurants
-            [featured, featured, featured].map((item, index) => {
+            [pizzaShops].map((item, index) => {
+              return (
+                <FeaturedRow
+                  key={index}
+                  title={item.title}
+                  restaurants={item.restaurants}
+                  description={item.description}
+                />
+              );
+            })
+          }
+        </View>
+        <View className="">
+          {
+            // Featured Restaurants
+            [burgerShops].map((item, index) => {
+              return (
+                <FeaturedRow
+                  key={index}
+                  title={item.title}
+                  restaurants={item.restaurants}
+                  description={item.description}
+                />
+              );
+            })
+          }
+        </View>
+        <View className="">
+          {
+            // Featured Restaurants
+            [otherShops].map((item, index) => {
               return (
                 <FeaturedRow
                   key={index}

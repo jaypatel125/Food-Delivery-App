@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../themes";
@@ -7,11 +7,20 @@ import { useNavigation } from "@react-navigation/native";
 import DishRow from "../components/dishRow";
 import CartIcon from "../components/cartIcon";
 import { StatusBar } from "expo-status-bar";
+import { useDispatch } from "react-redux";
+import { setRestaurant } from "../slices/restaurantSlice";
 
 export default function RestaurantScreen() {
   const { params } = useRoute();
   const navigation = useNavigation();
+  const item = params;
   let restaurant = params;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (item && item.id) {
+      dispatch(setRestaurant({ ...item }));
+    }
+  }, []);
 
   return (
     <View>
@@ -41,19 +50,16 @@ export default function RestaurantScreen() {
                 />
                 <Text className="text-gray-700">{restaurant.rating}</Text>
                 <Text className="text-gray-700">
-                  ({restaurant.reviews} reviews)
-                  <Text className="font-semibold">
-                    {" "}
-                    {restaurant.categories}
-                  </Text>
+                  ({restaurant.reviews} reviews){" "}
+                  <Text className="font-semibold">{restaurant.categories}</Text>
                 </Text>
               </View>
-              <View className="flex-row items-center space-x-1">
-                <Icon.MapPin height="20" width="20" color="gray" />
-                <Text className="text-gray-700 text-xs">
-                  Nearby {restaurant.address}
-                </Text>
-              </View>
+            </View>
+            <View className="flex-row items-center space-x-1">
+              <Icon.MapPin height="20" width="20" color="gray" />
+              <Text className="text-gray-700 text-xs">
+                Nearby {restaurant.address}
+              </Text>
             </View>
             <Text className="text-gray-500 mt-2">{restaurant.description}</Text>
           </View>

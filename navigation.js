@@ -5,8 +5,9 @@ import React from "react";
 import HomeScreen from "./screens/HomeScreen";
 import RestaurantScreen from "./screens/RestaurantScreen";
 import CartScreen from "./screens/CartScreen";
-import OrderPrepairingScreen from "./screens/OrderPrepairingScreen";
 import DeliveryScreen from "./screens/DeliveryScreen";
+import { Provider } from "react-redux";
+import store from "./store";
 export default function Navigation() {
   return (
     <NavigationContainer>
@@ -18,11 +19,7 @@ export default function Navigation() {
           options={{ presentation: "modal" }}
           component={CartScreen}
         />
-        <Stack.Screen
-          name="OrderPrepairing"
-          options={{ presentation: "fullScreenModal" }}
-          component={OrderPrepairingScreen}
-        />
+
         <Stack.Screen
           name="Delivery"
           options={{ presentation: "fullScreenModal" }}
